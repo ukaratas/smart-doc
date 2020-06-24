@@ -19,6 +19,13 @@ namespace smart_doc.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+        }
+
         [HttpPost]
         public IEnumerable<string> Post()
         {
@@ -26,22 +33,15 @@ namespace smart_doc.Controllers
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-        [HttpPatch("{id}/Tag")]
-        public IEnumerable<string> PatchTag()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
-        }
-
-         [HttpPatch("{id}/Content")]
-        public IEnumerable<string> PatchContent()
+        [HttpPatch("{document-id}")]
+        public IEnumerable<string> Patch()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{document-id}")]
         public IEnumerable<string> Delete()
         {
             var rng = new Random();
@@ -49,14 +49,28 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{document-id}")]
         public IEnumerable<string> Document()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-        [HttpGet("{id}/Preview/{page}")]
+        [HttpPost("{document-id}/check-out")]
+        public IEnumerable<string> Checkout()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+        }
+
+        [HttpPost("{document-id}/check-in")]
+        public IEnumerable<string> CheckIn()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+        }
+
+        [HttpGet("{document-id}/Preview/{page}")]
         public IEnumerable<string> Preview()
         {
             var rng = new Random();
@@ -64,7 +78,7 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpGet("{id}/Content")]
+        [HttpGet("{document-id}/Content")]
         public IEnumerable<string> Content()
         {
             var rng = new Random();
@@ -72,14 +86,14 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpGet("{id}/History")]
+        [HttpGet("{document-id}/History")]
         public IEnumerable<string> History()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-        [HttpGet("{id}/Security")]
+        [HttpGet("{document-id}/Security")]
         public IEnumerable<string> Security()
         {
             var rng = new Random();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace smart_doc.Controllers
 {
@@ -42,6 +43,21 @@ namespace smart_doc.Controllers
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
+        [HttpPatch("{tag-code}")]
+        public IEnumerable<string> Patch()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+        }
+
+
+        [HttpDelete("{tag-code}")]
+        public IEnumerable<string> Delete()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+        }
+
 
         [HttpGet("{tag-code}/Statistics")]
         public IEnumerable<string> Statistics()
@@ -58,7 +74,11 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpGet("{tag-code}/Instance")]
+        #region  Instance
+
+
+        [HttpGet("{tag-code}/Instance/{instance-id}")]
+        [SwaggerOperation(OperationId = "TagInstanceGet", Tags = new[] { "Tag - Instance" })]
         public IEnumerable<string> Instance()
         {
             var rng = new Random();
@@ -66,8 +86,19 @@ namespace smart_doc.Controllers
         }
 
 
-        
+
+        [HttpGet("{tag-code}/Instance/{instance-id}/History")]
+        [SwaggerOperation(OperationId = "TagInstanceHistory", Tags = new[] { "Tag - Instance" })]
+        public IEnumerable<string> InstanceHistory()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+        }
+
+
+
         [HttpPost("{tag-code}/Instance")]
+        [SwaggerOperation(OperationId = "TagInstancePost", Tags = new[] { "Tag - Instance" })]
         public IEnumerable<string> PostInstance()
         {
             var rng = new Random();
@@ -75,14 +106,16 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpPatch("{tag-code}/Instance/{id}")]
+        [HttpPatch("{tag-code}/Instance/{instance-id}")]
+        [SwaggerOperation(OperationId = "TagInstancePatch", Tags = new[] { "Tag - Instance" })]
         public IEnumerable<string> PatchInstance()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-        [HttpDelete("{tag-code}/Instance/{id}")]
+        [HttpDelete("{tag-code}/Instance/{instance-id}")]
+        [SwaggerOperation(OperationId = "TagInstanceDelete", Tags = new[] { "Tag - Instance" })]
         public IEnumerable<string> DeleteInstance()
         {
             var rng = new Random();
@@ -90,40 +123,44 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpGet("{tag-code}/Properties")]
+        #endregion
+
+        #region Properties
+
+        [HttpGet("{tag-code}/Property")]
+        [SwaggerOperation(OperationId = "TagPropertyGet", Tags = new[] { "Tag - Properties" })]
         public IEnumerable<string> Properties()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-        [HttpDelete("{tag-code}/Properties/{property-code}")]
-        public IEnumerable<string> DeleteProperty()
+        [HttpPost("{tag-code}/Property")]
+        [SwaggerOperation(OperationId = "TagPropertyPost", Tags = new[] { "Tag - Properties" })]
+        public IEnumerable<string> PostProperty()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-         [HttpPatch("{tag-code}/Properties/{property-code}")]
+
+        [HttpPatch("{tag-code}/Property/{property-code}")]
+        [SwaggerOperation(OperationId = "TagPropertyPatch", Tags = new[] { "Tag - Properties" })]
         public IEnumerable<string> PatchProperty()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
-        [HttpPatch("{tag-code}")]
-        public IEnumerable<string> Patch()
+        [HttpDelete("{tag-code}/Property/{property-code}")]
+        [SwaggerOperation(OperationId = "TagPropertyDelete", Tags = new[] { "Tag - Properties" })]
+        public IEnumerable<string> DeleteProperty()
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
+        #endregion
 
-        [HttpDelete("{tag-code}")]
-        public IEnumerable<string> Delete()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
-        }
     }
 }
