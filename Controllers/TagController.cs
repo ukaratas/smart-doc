@@ -10,6 +10,7 @@ namespace smart_doc.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [SwaggerTag("Create, read, update and delete Tags")]
     public class TagController : ControllerBase
     {
 
@@ -20,42 +21,44 @@ namespace smart_doc.Controllers
             _logger = logger;
         }
 
-
+        /// <summary>
+        /// Retrieves queried tag(s) 
+        /// </summary>
         [HttpGet()]
-        public IEnumerable<string> Tags()
+        //[ProducesResponseType(typeof(ResponsePage<Tag>), 200)]
+        public ResponsePage<Tag> Tags(string code, string name, [FromQuery(Name = "page-index")] int pageIndex, [FromQuery(Name = "page-size")] int pageSize)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+            return new ResponsePage<Tag> { HasNextPage = true };
         }
 
+
+        /// <summary>
+        /// Creates new tag(s) 
+        /// </summary>
         [HttpPost]
-        public IEnumerable<string> Post()
+        public void Post([FromBody] IEnumerable<Tag> items)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+
         }
 
 
-        [HttpGet("{tag-code}")]
-        public IEnumerable<string> Tag()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
-        }
-
+        /// <summary>
+        /// Updates existing tag 
+        /// </summary>
         [HttpPatch("{tag-code}")]
-        public IEnumerable<string> Patch()
+        public void Patch([FromRoute(Name = "tag-code")] string tagCode, [FromBody] TagPatch patch)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
+
         }
 
+
+        /// <summary>
+        /// Deletes existing tag 
+        /// </summary>
 
         [HttpDelete("{tag-code}")]
-        public IEnumerable<string> Delete()
+        public void Delete([FromRoute(Name = "tag-code")] string tagCode, [FromQuery(Name = "force-delete")] bool forceDelete = false)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
         }
 
 
