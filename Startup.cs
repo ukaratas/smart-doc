@@ -49,6 +49,20 @@ namespace smart_doc
                  var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                  c.IncludeXmlComments(xmlPath);
                  c.EnableAnnotations();
+
+                 c.TagActionsBy((api) =>
+                 {
+                     List<string> returnValue = new List<string>();
+                     returnValue.Add("untagged");
+                     returnValue.Add("Tag");
+                     returnValue.Add("Tag Instance");
+                     returnValue.Add("Documents");
+                     returnValue.Add("Tag Properties");
+                     return returnValue;
+                 });
+
+
+                 
              });
         }
 

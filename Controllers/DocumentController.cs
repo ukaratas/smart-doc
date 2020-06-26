@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace smart_doc.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("document")]
     public class DocumentController : ControllerBase
     {
 
@@ -20,6 +21,7 @@ namespace smart_doc.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Get()
         {
             var rng = new Random();
@@ -27,6 +29,7 @@ namespace smart_doc.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Post()
         {
             var rng = new Random();
@@ -34,6 +37,7 @@ namespace smart_doc.Controllers
         }
 
         [HttpPatch("{document-id}")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Patch()
         {
             var rng = new Random();
@@ -42,6 +46,7 @@ namespace smart_doc.Controllers
 
 
         [HttpDelete("{document-id}")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Delete()
         {
             var rng = new Random();
@@ -50,6 +55,7 @@ namespace smart_doc.Controllers
 
 
         [HttpGet("{document-id}")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Document()
         {
             var rng = new Random();
@@ -57,6 +63,7 @@ namespace smart_doc.Controllers
         }
 
         [HttpPost("{document-id}/check-out")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Checkout()
         {
             var rng = new Random();
@@ -64,6 +71,7 @@ namespace smart_doc.Controllers
         }
 
         [HttpPost("{document-id}/check-in")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> CheckIn()
         {
             var rng = new Random();
@@ -71,6 +79,7 @@ namespace smart_doc.Controllers
         }
 
         [HttpGet("{document-id}/Preview/{page}")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Preview()
         {
             var rng = new Random();
@@ -79,6 +88,7 @@ namespace smart_doc.Controllers
 
 
         [HttpGet("{document-id}/Content")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Content()
         {
             var rng = new Random();
@@ -86,14 +96,10 @@ namespace smart_doc.Controllers
         }
 
 
-        [HttpGet("{document-id}/History")]
-        public IEnumerable<string> History()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => index.ToString()).ToArray();
-        }
+
 
         [HttpGet("{document-id}/Security")]
+        [SwaggerOperation(Tags = new[] { "Document" })]
         public IEnumerable<string> Security()
         {
             var rng = new Random();

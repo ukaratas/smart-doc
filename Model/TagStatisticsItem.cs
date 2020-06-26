@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 
 public class TagStatisticsItem
@@ -8,5 +9,12 @@ public class TagStatisticsItem
 
     [JsonPropertyName("instance-count")]
     public long InstanceCount { get; set; }
+
+    [JsonPropertyName("first-used-at")]
+    public DateTime FirstUsed { get; set; }
+
+    [JsonPropertyName("last-used-at")]
+    public DateTime LastUsed { get; set; }
+
 
 }
